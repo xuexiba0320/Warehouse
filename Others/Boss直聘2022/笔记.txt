@@ -1,0 +1,10 @@
+2022-01-03
+这里的思路：
+使用selenium获取cookie传入requests请求中获取 url集合以及详细数据
+问题：
+    1.Cookie可用次数5次（算上拿到的那一次）
+    2.selenium拿到的Cookie不可用
+    3.刷新网页拿到的Cookie放入Requests_FirstURL、Requests_Second中可以获得数据
+    4.selenium使用代理打开网页失败率很高，没有做报错识别重新获取循环
+    5.Cookie逆向破解：token的js逆向，网站的js文件每天都在变化？？？
+    6.另一种方案：全部使用selenium爬取网页，免费代理IP很多打不开网页（晚上测试的），应该做不到，晚上的代理IP异常的很多，最好早上使用进行测试

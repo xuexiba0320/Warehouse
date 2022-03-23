@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h3>获取另一个html文档</h3>
+<div id="demo"></div>
+<script>
+    // jq 使用 load() 方法
+
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {
+        request = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    request.responseType = 'document';
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var ajaxHtml = this.responseXML;
+            // var childs = Object.assign([], ajaxHtml.body.childNodes);
+            var childs = [].slice.call(ajaxHtml.body.childNodes);
+            for	(var i = 0; i < childs.length; i++) {
+                document.querySelector('#demo').appendChild(childs[i]);
+            }
+            // console.log(this.responseXML);
+        }
+    }
+    request.open('GET','request.html',true);
+    request.send(null);
+
+    //释放内存，销毁script
+    document.body.removeChild(document.body.lastChild);
+</script>
+</body>
+</html>
+
